@@ -43,31 +43,31 @@ describe '商品出品機能' do
     end
 
     it 'category_idが空では登録できない' do
-      @item.category_id = '1'
+      @item.category_id = 1
       @item.valid?
       expect(@item.errors.full_messages).to include("Category can't be blank")
     end
 
     it 'status_idが空では登録できない' do
-      @item.status_id = '1'
+      @item.status_id = 1
       @item.valid?
       expect(@item.errors.full_messages).to include("Status can't be blank")
     end
 
     it 'burden_idが空では登録できない' do
-      @item.burden_id = '1'
+      @item.burden_id = 1
       @item.valid?
       expect(@item.errors.full_messages).to include("Burden can't be blank")
     end
 
     it 'delivery_idが空では登録できない' do
-      @item.delivery_id = '1'
+      @item.delivery_id = 1
       @item.valid?
       expect(@item.errors.full_messages).to include("Delivery can't be blank")
     end
 
     it 'days_delivery_idが空では登録できない' do
-      @item.days_delivery_id = '1'
+      @item.days_delivery_id = 1
       @item.valid?
       expect(@item.errors.full_messages).to include("Days delivery can't be blank")
     end
@@ -78,17 +78,39 @@ describe '商品出品機能' do
       expect(@item.errors.full_messages).to include("Price can't be blank")
     end
 
-    it 'priceが設定範囲以外だと出品できない' do
-      @item.price = '100'
+    it 'priceが299円以下だと出品できない' do
+      @item.price = 299
       @item.valid?
-      expect(@item.errors.full_messages).to include("Price Out of setting range")
+      expect(@item.errors.full_messages).to include('Price is not included in the list')
     end
 
-    it 'priceが全角数字だと出品できない' do
-      @item.price = '１００００'
+    it 'priceが10,000,000以上だと出品できない' do
+      @item.price = 10_000_000
       @item.valid?
-      expect(@item.errors.full_messages).to include ("Price Half-width number")
+      expect(@item.errors.full_messages).to include('Price is not included in the list')
+    end
+
+    it 'priceが半角数字でないと出品できない' do
+      @item.price = '３００'
+      @item.valid?
+      expect(@item.errors.full_messages).to include('Price is not included in the list')
+    end
+
+    it "priceが半角英数混合では登録できないこと" do
+      @item.price = "300dollars"
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Price is not a number")
+    end
+
+    it "priceが半角英語だけでは登録できないこと" do
+      @item.price = "threemillion"
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Price is not included in the list")
     end
    end
   end
  end
+
+
+
+ 
