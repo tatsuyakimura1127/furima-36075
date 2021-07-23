@@ -15,7 +15,7 @@ RSpec.describe Item, type: :model do
       @item.valid?
       expect(@item.errors.full_messages).to include('User must exist')
     end
-  
+
     it 'product_nameが空では登録できない' do
       @item.product_name = ''
       @item.valid?
@@ -35,13 +35,13 @@ RSpec.describe Item, type: :model do
     end
 
     it 'status_idが空では登録できない' do
-      @item.status_id= ''
+      @item.status_id = ''
       @item.valid?
       expect(@item.errors.full_messages).to include("Status can't be blank")
     end
 
     it 'burden_idが空では登録できない' do
-      @item.burden_id= ''
+      @item.burden_id = ''
       @item.valid?
       expect(@item.errors.full_messages).to include("Burden can't be blank")
     end
@@ -53,7 +53,7 @@ RSpec.describe Item, type: :model do
     end
 
     it 'days_delivery_idが空では登録できない' do
-      @item.days_delivery_id= ''
+      @item.days_delivery_id = ''
       @item.valid?
       expect(@item.errors.full_messages).to include("Days delivery can't be blank")
     end
@@ -65,5 +65,3 @@ RSpec.describe Item, type: :model do
     end
   end
 end
-
-

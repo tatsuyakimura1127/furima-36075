@@ -1,6 +1,6 @@
 class StatusesController < ApplicationController
   def index
-    @statuses = Status.order("created_at DESC")
+    @statuses = Status.order('created_at DESC')
   end
 
   def new
@@ -19,7 +19,6 @@ class StatusesController < ApplicationController
   private
 
   def status_params
-    params.require(:status).permit(:title,:text,:genre_id)
+    params.require(:status).permit(:title, :text, :genre_id)
   end
-
 end
