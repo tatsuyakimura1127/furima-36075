@@ -21,8 +21,6 @@ class Item < ApplicationRecord
   belongs_to :days_delivery
 
 
-  validates :title, :text, presence: true
-
   validates :category_id, numericality: { other_than: 1 , message: "can't be blank"}
   validates :status_id, numericality: { other_than: 1 , message: "can't be blank"}
   validates :burden_id, numericality: { other_than: 1 , message: "can't be blank"}
