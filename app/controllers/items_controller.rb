@@ -3,6 +3,7 @@ class ItemsController < ApplicationController
   before_action :set_item, only: [:show, :edit, :update, :destroy]
   before_action :confirm_current_user, only: [:edit, :update, :destroy]
 
+
   def index
     @items = Item.order('created_at DESC')
   end
