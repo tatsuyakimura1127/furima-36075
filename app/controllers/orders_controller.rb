@@ -1,7 +1,7 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!
   before_action :set_item, only: [:index, :create]
-  before_action :move_to_index, expect: :index
+  before_action :move_to_index
   
   def index
     @order_residence = OrderResidence.new
