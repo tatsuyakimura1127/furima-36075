@@ -5,6 +5,7 @@ FactoryBot.define do
     prefecture { 1 }
     municipality { '墨田区' }
     address { '1-1-1' }
+    building_name { 'park axis' }
     phone_number { '11122223333' }
   end
 end
