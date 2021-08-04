@@ -51,10 +51,16 @@ RSpec.describe OrderResidence, type: :model do
       expect(@order_residence.errors.full_messages).to include("Postal code is invalid")
      end
 
+    it "delivery_idが0では保存できないことでは登録できないこと" do
+      @order_residence.delivery_id = '0'
+      @order_residence.valid?
+      expect(@order_residence.errors.full_messages).to include("Delivery can't be blank")
+    end
+
     it "delivery_idが空では登録できないこと" do
       @order_residence.delivery_id = nil
       @order_residence.valid?
-      expect(@order_residence.errors.full_messages).to include("Delivery id can't be blank")
+      expect(@order_residence.errors.full_messages).to include("Delivery can't be blank")
     end
 
     it "municipalityが空では保存ができないこと" do
@@ -83,6 +89,12 @@ RSpec.describe OrderResidence, type: :model do
 
     it "電話番号が数字のみでないと登録できないこと" do
       @order_residence.phone_number = '090-9090-1212'
+      @order_residence.valid?
+      expect(@order_residence.errors.full_messages).to include("Phone number is invalid")
+    end
+
+    it "電話番号が英数字混合では登録できないこと" do
+      @order_residence.phone_number = 'aaa9090212'
       @order_residence.valid?
       expect(@order_residence.errors.full_messages).to include("Phone number is invalid")
     end
