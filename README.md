@@ -16,7 +16,7 @@
 - has_many :purchases
 - has_many :items
 
-## purchasesテーブル(購入記録)
+## ordersテーブル(購入記録)
 
 |Column       |Type          |Options                      |
 |------       |              |                             |
@@ -44,20 +44,20 @@
 ### Association
 
 - belongs_to :user
-- has_one :purchase
+- has_one :order
 
 
 # residences テーブル(発送先住所)
 |Column             |Type           |Options                       |
 |---------------    |------------   |-------------------------     |
-|purchase           |references     |null:false, foreign_key: true |
+|order              |references     |null:false, foreign_key: true |
 |postal_code        |string         |null:false                    |
-|postage_id         |integer        |null:false                    |
-|municipality       |string         |null:false                    |
+|delivery_id      |integer        |null:false                    |
+|municipality       |string         |null:false                   |
 |address            |string         |null:false                    |
 |building_name      |string         |                              |
 |phone_number       |string         |null:false                    |
 ### Association
 
-- belongs_to :purchase
+- belongs_to :order
 
