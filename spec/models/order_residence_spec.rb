@@ -51,10 +51,10 @@ RSpec.describe OrderResidence, type: :model do
       expect(@order_residence.errors.full_messages).to include("Postal code is invalid")
      end
 
-    it "prefectureが空では登録できないこと" do
-      @order_residence.prefecture = nil
+    it "delivery_idが空では登録できないこと" do
+      @order_residence.delivery_id = nil
       @order_residence.valid?
-      expect(@order_residence.errors.full_messages).to include("Prefecture can't be blank")
+      expect(@order_residence.errors.full_messages).to include("Delivery id can't be blank")
     end
 
     it "municipalityが空では保存ができないこと" do
